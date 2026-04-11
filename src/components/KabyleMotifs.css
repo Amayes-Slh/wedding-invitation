@@ -1,0 +1,103 @@
+/* Motifs kabyles — calque decoratif, ne masque pas le contenu */
+
+.kabyle-motifs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  color: var(--kabyle-stroke, rgba(77, 92, 68, 0.35));
+  overflow: hidden;
+}
+
+.kabyle-motifs--intro {
+  --kabyle-stroke: rgba(61, 74, 54, 0.28);
+}
+
+.kabyle-motifs--page {
+  --kabyle-stroke: rgba(77, 92, 68, 0.22);
+}
+
+.kabyle-motifs__fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.kabyle-motifs__layer--diamonds {
+  opacity: 0.14;
+}
+
+.kabyle-motifs__layer--chevrons {
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+}
+
+.kabyle-motifs__layer--triangles {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+.kabyle-motifs--intro .kabyle-motifs__layer--diamonds {
+  opacity: 0.11;
+}
+
+.kabyle-motifs--intro .kabyle-motifs__layer--chevrons {
+  opacity: 0.07;
+}
+
+.kabyle-motifs--intro .kabyle-motifs__layer--triangles {
+  opacity: 0.06;
+}
+
+/* Coins decoratifs */
+.kabyle-motifs__corner {
+  position: absolute;
+  width: min(28vw, 140px);
+  height: min(28vw, 140px);
+  color: var(--kabyle-stroke, rgba(77, 92, 68, 0.32));
+  opacity: 0.85;
+}
+
+.kabyle-motifs__corner--tl {
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.kabyle-motifs__corner--tr {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.kabyle-motifs__corner--bl {
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
+.kabyle-motifs__corner--br {
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+.kabyle-motifs--page .kabyle-motifs__corner {
+  width: min(22vw, 120px);
+  height: min(22vw, 120px);
+  opacity: 0.65;
+}
+
+/* Contenu principal : motif sur toute la hauteur du scroll */
+.main-kabyle {
+  position: relative;
+}
+
+.main-kabyle .kabyle-motifs--page {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 100%;
+}
+
+.main-kabyle > *:not(.kabyle-motifs) {
+  position: relative;
+  z-index: 1;
+}

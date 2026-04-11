@@ -1,0 +1,562 @@
+/* ═══════════════════════════════════════════════════
+   Fullscreen Envelope — the envelope IS the viewport
+   Sage green, KabyleMotifs in all corners, gold seal
+   ═══════════════════════════════════════════════════ */
+
+.envelope-intro {
+  --sage: #b5bfa0;
+  --sage-mid: #a2ad8a;
+  --sage-dark: #8a9674;
+  --sage-light: #c4ccae;
+  --bg: #f6f3ee;
+  --text: rgba(255, 255, 255, 0.92);
+  --text-soft: rgba(255, 255, 255, 0.62);
+  --gold-hi: #f5e6c0;
+  --gold: #c9a020;
+  --gold-lo: #8a6e14;
+  --intro-design-width: 430;
+  --intro-design-height: 844;
+  --intro-frame-width:
+    min(100vw, calc(100dvh * var(--intro-design-width) / var(--intro-design-height)));
+  --intro-frame-height:
+    min(100dvh, calc(100vw * var(--intro-design-height) / var(--intro-design-width)));
+  --intro-column-left:
+    calc(var(--intro-frame-width) * 43 / var(--intro-design-width));
+  --intro-column-width:
+    calc(var(--intro-frame-width) * 344 / var(--intro-design-width));
+  --intro-top-offset: 20px;
+  --intro-seal-padding-top: 282px;
+  --intro-below-top: 379px;
+  --intro-below-margin-top: 90px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ Envelope = full viewport ═══ */
+.envelope-intro__env {
+  position: absolute;
+  inset: 0;
+}
+
+/* Sage background */
+.envelope-intro__env-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(178deg,
+      var(--sage-light) 0%,
+      var(--sage) 20%,
+      var(--sage) 80%,
+      var(--sage-dark) 100%);
+}
+
+/* KabyleMotifs — white strokes on sage, corners in all 4 angles */
+.envelope-intro__env > .kabyle-motifs {
+  --kabyle-stroke: rgba(255, 255, 255, 0.18);
+  z-index: 1;
+}
+.envelope-intro__env > .kabyle-motifs .kabyle-motifs__layer--diamonds  { opacity: 0.18; }
+.envelope-intro__env > .kabyle-motifs .kabyle-motifs__layer--chevrons  { opacity: 0.12; }
+.envelope-intro__env > .kabyle-motifs .kabyle-motifs__layer--triangles { opacity: 0.08; }
+.envelope-intro__env > .kabyle-motifs .kabyle-motifs__corner {
+  color: rgba(255, 255, 255, 0.28);
+  opacity: 0.8;
+  width: min(30vw, 155px);
+  height: min(30vw, 155px);
+}
+
+/* subtle vignette for depth */
+.envelope-intro__env-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.08),
+    inset 0 0 200px rgba(0, 0, 0, 0.04);
+}
+
+/* ═══ Triangular flap (top half) ═══ */
+.envelope-intro__flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50vh;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 4;
+  transform-origin: top center;
+}
+
+.envelope-intro__flap-fill {
+  width: 100%; height: 100%;
+  background:
+    linear-gradient(172deg,
+      #cad2b4 0%,
+      var(--sage) 30%,
+      var(--sage-mid) 70%,
+      var(--sage-dark) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ═══ Content : cachet en haut | noms + grattage en dessous | indice en bas ═══ */
+.envelope-intro__content {
+  position: absolute;
+  top: max(0px, calc((100dvh - var(--intro-frame-height)) / 2));
+  left: 50%;
+  width: var(--intro-frame-width);
+  height: var(--intro-frame-height);
+  transform: translateX(-50%);
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+/* Cachet d'ouverture — en haut, centré horizontalement */
+.envelope-intro__seal-stage {
+  position: absolute;
+  top: var(--intro-top-offset);
+  left: 50%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: var(--intro-column-width);
+  padding-top: var(--intro-seal-padding-top);
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+/* Sous le cachet : prénoms + zone à gratter */
+.envelope-intro__below-seal {
+  position: absolute;
+  top: var(--intro-below-top);
+  left: 50%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--intro-column-width);
+  margin-top: var(--intro-below-margin-top);
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  gap: 0.35rem;
+}
+
+/* ── Names ── */
+.envelope-intro__header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.25rem, calc(var(--intro-frame-width) * 0.015), 0.75rem);
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.envelope-intro--play .envelope-intro__header {
+  animation: introSlide 0.9s cubic-bezier(0.33, 1, 0.68, 1) 0.2s forwards;
+}
+
+.envelope-intro__name-script {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.2rem, calc(var(--intro-frame-width) * 0.108), 4.2rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.05;
+  flex: 0 1 auto;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.envelope-intro__name-and {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.85rem, calc(var(--intro-frame-width) * 0.03), 1.3rem);
+  font-style: italic;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.envelope-intro__name-serif {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.2rem, calc(var(--intro-frame-width) * 0.125), 3.3625rem);
+  font-weight: 500;
+  letter-spacing: normal;
+  color: var(--text);
+  line-height: 1.05;
+  flex: 0 1 auto;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Scratch-to-reveal ── */
+.envelope-intro__sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+.envelope-intro__scratch-wrap {
+  width: clamp(12rem, calc(var(--intro-frame-width) * 0.63), 19rem);
+  max-width: none;
+  margin-top: 0.15rem;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.envelope-intro--play .envelope-intro__scratch-wrap {
+  animation: introSlide 0.75s ease 0.5s forwards;
+}
+
+.envelope-intro__scratch-inner {
+  position: relative;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.envelope-intro__scratch-date {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.72rem, 2.4vw, 0.84rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.envelope-intro__scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  touch-action: none;
+  cursor: grab;
+  border-radius: 6px;
+}
+.envelope-intro__scratch-canvas:active { cursor: grabbing; }
+
+/* ═══ WAX SEAL (pastille dorée — centre écran) ═══ */
+.envelope-intro__seal {
+  position: relative;
+  z-index: 6;
+  flex-shrink: 0;
+  border: 0; padding: 0; margin: 0;
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  background: none;
+  width: clamp(88px, calc(var(--intro-frame-width) * 0.24), 120px);
+  height: clamp(88px, calc(var(--intro-frame-width) * 0.24), 120px);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: filter 0.25s ease;
+}
+.envelope-intro__seal:hover  { filter: brightness(1.08); }
+.envelope-intro__seal:active { filter: brightness(0.95); }
+.envelope-intro__seal:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
+
+.envelope-intro--play .envelope-intro__seal {
+  animation: introSealPop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+}
+
+.envelope-intro--ready .envelope-intro__seal::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 245, 220, 0.7);
+  box-shadow: 0 0 0 8px rgba(255, 245, 220, 0.12);
+  pointer-events: none;
+  animation: sealPulse 1.6s ease-out infinite;
+}
+
+.envelope-intro--ready .envelope-intro__seal {
+  animation:
+    introSealPop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards,
+    sealFloat 2.2s ease-in-out 1.8s infinite;
+}
+
+/* outer rim */
+.envelope-intro__seal-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 135deg,
+      #a0841c, #d4b840, #f5e6c0, #c9a020,
+      #8a6e14, #b89428, #f5e6c0, #c9a020, #a0841c
+    );
+  box-shadow:
+    0 8px 28px rgba(70, 55, 15, 0.50),
+    0 2px 8px rgba(70, 55, 15, 0.30),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 6px rgba(50, 40, 10, 0.30);
+}
+
+/* inner face */
+.envelope-intro__seal-face {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 248, 225, 0.8), transparent 50%),
+    radial-gradient(circle at 70% 75%, rgba(60, 45, 10, 0.25), transparent 55%),
+    linear-gradient(150deg, var(--gold-hi) 0%, var(--gold) 48%, var(--gold-lo) 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 8px rgba(60, 45, 10, 0.3);
+  display: grid;
+  place-items: center;
+}
+
+.envelope-intro__seal-text {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.2rem, 4.2vw, 1.65rem);
+  font-weight: 600;
+  color: var(--gold-lo);
+  text-shadow:
+    0 1px 0 rgba(255, 250, 220, 0.5),
+    0 -1px 1px rgba(60, 45, 10, 0.15);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+/* ═══ Card (hidden, slides out on open) ═══ */
+.envelope-intro__card {
+  position: absolute;
+  left: 12%; right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  padding: 3rem 1.5rem;
+  background: var(--bg);
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  z-index: 0;
+  opacity: 0;
+}
+
+.envelope-intro__card-overline {
+  margin: 0;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  color: #6e6e66;
+}
+
+.envelope-intro__card-names {
+  margin: 0;
+  font-family: "Playfair Display", "Cormorant Garamond", serif;
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
+  font-weight: 600;
+  color: #3c3c38;
+  letter-spacing: 0.06em;
+}
+
+.envelope-intro__card-date {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6e6e66;
+}
+
+/* ═══════════════════════════════════════════
+   OPEN ANIMATION  (--opening)
+   0–400ms   Seal + content fade out
+   200–1000ms  Flap rotates open
+   600–1500ms  Card slides up into view
+   1500–2200ms Whole screen fades to cream
+   ═══════════════════════════════════════════ */
+
+.envelope-intro--opening .envelope-intro__seal {
+  animation: sealOut 0.4s ease forwards !important;
+}
+
+.envelope-intro--opening .envelope-intro__below-seal {
+  animation: fadeOutQuick 0.4s ease forwards !important;
+}
+
+.envelope-intro--opening .envelope-intro__flap {
+  animation: flapOpen 0.8s cubic-bezier(0.33, 1, 0.68, 1) 0.2s forwards;
+}
+
+.envelope-intro--opening .envelope-intro__card {
+  animation: cardSlideOut 0.9s cubic-bezier(0.33, 1, 0.68, 1) 0.6s forwards;
+}
+
+.envelope-intro--opening::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  animation: fadeInCream 0.7s ease 1.5s forwards;
+}
+
+/* ═══ Keyframes ═══ */
+@keyframes introSlide {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes introSealPop {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sealPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes sealFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+}
+
+@keyframes sealOut {
+  to { opacity: 0; transform: scale(0.6); }
+}
+
+@keyframes fadeOutQuick {
+  to { opacity: 0; }
+}
+
+@keyframes flapOpen {
+  to { transform: rotateX(-180deg); }
+}
+
+@keyframes cardSlideOut {
+  0%   { opacity: 0; transform: translateY(0); }
+  35%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(-85%); }
+}
+
+@keyframes fadeInCream {
+  to { opacity: 1; }
+}
+
+/* ═══ Reduced motion ═══ */
+@media (prefers-reduced-motion: reduce) {
+  .envelope-intro--play .envelope-intro__header,
+  .envelope-intro--play .envelope-intro__scratch-wrap {
+    animation: none; opacity: 1; transform: none;
+  }
+  .envelope-intro--play .envelope-intro__seal {
+    animation: none; opacity: 1; transform: scale(1);
+  }
+  .envelope-intro--ready .envelope-intro__seal::after {
+    animation: none;
+    opacity: 1;
+  }
+  .envelope-intro--opening .envelope-intro__flap {
+    animation: none; transform: rotateX(-180deg);
+  }
+  .envelope-intro--opening .envelope-intro__card {
+    animation: none; opacity: 1; transform: translateY(-85%);
+  }
+  .envelope-intro--opening::after { animation: none; opacity: 1; }
+  .envelope-intro--opening .envelope-intro__seal { animation: none; opacity: 0; }
+  .envelope-intro--opening .envelope-intro__below-seal {
+    animation: none; opacity: 0;
+  }
+}
+
+/* ═══ Larger viewports ═══ */
+@media (min-width: 480px) {
+  .envelope-intro__env > .kabyle-motifs .kabyle-motifs__corner {
+    width: min(24vw, 170px);
+    height: min(24vw, 170px);
+  }
+}
+
+@media (max-width: 420px) {
+  .envelope-intro__header {
+    gap: 0.3rem;
+  }
+}
+
+/* ═══ Stable layout bands by device size ═══ */
+@media (max-width: 374px), (max-height: 740px) {
+  .envelope-intro {
+    --intro-top-offset: 16px;
+    --intro-seal-padding-top: 266px;
+    --intro-below-top: 356px;
+    --intro-below-margin-top: 82px;
+  }
+}
+
+@media (max-width: 430px) and (min-height: 741px) and (max-height: 812px) and (orientation: portrait) {
+  .envelope-intro {
+    --intro-top-offset: 18px;
+    --intro-seal-padding-top: 274px;
+    --intro-below-top: 368px;
+    --intro-below-margin-top: 86px;
+  }
+}
+
+@media (max-width: 430px) and (min-height: 813px) and (max-height: 860px) and (orientation: portrait) {
+  .envelope-intro {
+    --intro-top-offset: 20px;
+    --intro-seal-padding-top: 282px;
+    --intro-below-top: 379px;
+    --intro-below-margin-top: 90px;
+  }
+}
+
+@media (max-width: 430px) and (min-height: 861px) and (max-height: 932px) and (orientation: portrait) {
+  .envelope-intro {
+    --intro-top-offset: 22px;
+    --intro-seal-padding-top: 292px;
+    --intro-below-top: 390px;
+    --intro-below-margin-top: 94px;
+  }
+}
+
+@media (min-width: 768px) {
+  .envelope-intro {
+    --intro-top-offset: 24px;
+    --intro-seal-padding-top: 300px;
+    --intro-below-top: 398px;
+    --intro-below-margin-top: 96px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .envelope-intro {
+    --intro-seal-padding-top: 320px;
+    --intro-below-top: 420px;
+    --intro-below-margin-top: 104px;
+  }
+}
