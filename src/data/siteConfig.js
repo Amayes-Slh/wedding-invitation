@@ -1,4 +1,3 @@
-/** Phrase en kabyle (latin) — affichee sur le hero apres ouverture */
 const kabylePhrase = "Ansuf yisswen";
 
 const siteConfig = {
@@ -8,8 +7,8 @@ const siteConfig = {
     kabylePhrase,
     dateLabel: "20 juin 2026",
     dateISO: "2026-06-20T16:00:00+02:00",
-    venue: "Mairie Aulnay sous Bois - Bd de l'Hôtel de ville, 93600.",
-    introMessage: "Tu es invite(e) à celebrer avec nous ce moment unique."
+    venue: "Mairie d'Aulnay sous Bois - Bd de l'Hôtel de ville, 93600.",
+    introMessage: "Tu es invité(e) à célébrer avec nous ce moment uniquexz."
   },
   intro: {
     enabled: true,
@@ -33,7 +32,7 @@ const siteConfig = {
     videoSrc: "/assets/hero-video-new-G6oopIOA.mp4",
     musicSrc: "/assets/wedding-march-CDiiiBMO.mp3",
     quote:
-      "Deux coeurs, une promesse, et une journée inoubliable à partager avec nos proches."
+      "Deux coeurs, une promesse, et une journée inoubliable à partager avec nos proches pour embellir notre Dolce Hayat ❤️."
   },
   schedule: [
     { time: "11:15", title: "Arrivée des invités", description: "Acceuil & Bienvenue." },
