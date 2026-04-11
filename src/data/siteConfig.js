@@ -9,7 +9,7 @@ const siteConfig = {
     dateLabel: "20 juin 2026",
     dateISO: "2026-06-20T16:00:00+02:00",
     venue: "Mairie Aulnay sous Bois - Bd de l'Hôtel de ville, 93600.",
-    introMessage: "Tu es invite(e) a celebrer avec nous ce moment unique."
+    introMessage: "Tu es invite(e) à celebrer avec nous ce moment unique."
   },
   intro: {
     enabled: true,
@@ -25,7 +25,7 @@ const siteConfig = {
     ctaLabel: "Ouvrir l'invitation",
     introFooterHint: "Cliquez sur le cachet pour ouvrir",
     overlayTitle: "Amayes & Manel",
-    overlaySubtitle: "20 juin 2026 - Paris",
+    overlaySubtitle: "20 juin 2026",
     overlayMessage: "Nous avons la joie de vous inviter à notre mariage."
   },
   hero: {
@@ -33,13 +33,13 @@ const siteConfig = {
     videoSrc: "/assets/hero-video-new-G6oopIOA.mp4",
     musicSrc: "/assets/wedding-march-CDiiiBMO.mp3",
     quote:
-      "Deux coeurs, une promesse, et une journee inoubliable a partager avec nos proches."
+      "Deux coeurs, une promesse, et une journée inoubliable à partager avec nos proches."
   },
   schedule: [
     { time: "11:15", title: "Arrivée des invités", description: "Acceuil & Bienvenue." },
     { time: "11:30", title: "Cérémonie", description: "Echange des voeux." },
     { time: "12:15", title: "Shooting photos", description: "Préparez vos plus belles poses." },
-    { time: "13h", title: "Dejeuner entre famille", description: "Repas en famille." },
+    { time: "13h", title: "Déjeuner entre famille", description: "Repas en famille." },
     { time: "19:00", title: "Soirée entre amis", description: "Coktails & moments entre amis." }
   ],
   rsvp: {
