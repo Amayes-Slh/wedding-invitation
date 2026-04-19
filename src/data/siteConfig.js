@@ -43,7 +43,7 @@ const siteConfig = {
   ],
   rsvp: {
     title: "Confirme ta presence",
-    subtitle: "Merci de nous repondre avant le 1er juin 2026."
+    subtitle: "Merci de nous répondre avant le 1er juin 2026."
   },
   emailjs: {
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,

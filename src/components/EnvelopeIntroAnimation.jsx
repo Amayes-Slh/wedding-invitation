@@ -85,7 +85,7 @@ function EnvelopeIntroAnimation({ intro, onOpen }) {
               className="envelope-intro__seal"
               onClick={handleSealClick}
               aria-label={intro.ctaLabel || "Ouvrir l'invitation"}
-              disabled={opening}
+              disabled={opening || !scratchRevealed}
             >
               <span className="envelope-intro__seal-rim" aria-hidden="true" />
               <span className="envelope-intro__seal-face">
