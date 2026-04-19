@@ -77,13 +77,13 @@ function App() {
             <p className="theme-palette__label">Thème & couleurs du mariage</p>
             <div className="theme-palette">
               <div className="theme-palette__swatch" style={{ background: "#EFE7D3" }}>
-                <span className="theme-palette__name">Ivoire</span>
+             
               </div>
               <div className="theme-palette__swatch" style={{ background: "#B6C09D" }}>
-                <span className="theme-palette__name">Sauge</span>
+        
               </div>
               <div className="theme-palette__swatch" style={{ background: "#5D5644" }}>
-                <span className="theme-palette__name">Brun doré</span>
+                
               </div>
             </div>
           </section>

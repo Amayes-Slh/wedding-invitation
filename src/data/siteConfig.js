@@ -5,7 +5,7 @@ const siteConfig = {
     coupleNames: "Amayes & Manel",
     title: "Notre mariage",
     kabylePhrase,
-    dateLabel: "20 juin 2026",
+    dateLabel: "Le Samedi 20 juin 2026",
     dateISO: "2026-06-20T16:00:00+02:00",
     venue: "Mairie d'Aulnay sous Bois - Bd de l'Hôtel de ville, 93600.",
     introMessage: "Tu es invité(e) à célébrer avec nous ce moment uniquexz."
@@ -24,7 +24,7 @@ const siteConfig = {
     ctaLabel: "Ouvrir l'invitation",
     introFooterHint: "Cliquez sur le cachet pour ouvrir",
     overlayTitle: "Amayes & Manel",
-    overlaySubtitle: "20 juin 2026",
+    overlaySubtitle: "Le Samedi 20 juin 2026",
     overlayMessage: "Nous avons la joie de vous inviter à notre mariage."
   },
   hero: {
