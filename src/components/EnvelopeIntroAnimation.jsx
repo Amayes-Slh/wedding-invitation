@@ -100,7 +100,7 @@ function EnvelopeIntroAnimation({ intro, onOpen }) {
                 <span className="envelope-intro__name-script">{firstName}</span>
               )}
               {firstName && secondName && (
-                <span className="envelope-intro__name-and">and</span>
+                <span className="envelope-intro__name-and">&</span>
               )}
               {secondName && (
                 <span className="envelope-intro__name-serif">{secondName}</span>

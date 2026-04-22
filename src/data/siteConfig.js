@@ -7,7 +7,7 @@ const siteConfig = {
     kabylePhrase,
     dateLabel: "Le Samedi 20 juin 2026",
     dateISO: "2026-06-20T16:00:00+02:00",
-    venue: "Mairie d'Aulnay sous Bois - Bd de l'Hôtel de ville, 93600.",
+    venue: "Mairie d'Aulnay sous Bois - Bd de l'Hôtel de ville.",
     introMessage: "Tu es invité(e) à célébrer avec nous ce moment uniquexz."
   },
   intro: {
