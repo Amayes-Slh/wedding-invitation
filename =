@@ -1,0 +1,17 @@
+quick fixes
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Wed Apr 22 10:45:08 2026 +0200
+# Committer: Amayes SALHI <amayessalhi@Mac.lan>
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	modified:   customization.config.js
+#	modified:   index.html
+#	modified:   src/components/EnvelopeIntroAnimation.jsx
+#	modified:   src/data/siteConfig.js
+#

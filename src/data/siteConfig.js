@@ -39,7 +39,7 @@ const siteConfig = {
     { time: "11:30", title: "Cérémonie", description: "Echange des voeux." },
     { time: "12:15", title: "Shooting photos", description: "Préparez vos plus belles poses." },
     { time: "13:00", title: "Déjeuner entre famille", description: "Repas en famille." },
-    { time: "19:00", title: "Soirée entre amis", description: "Coktails & moments entre amis." }
+    { time: "19:00", title: "Soirée entre amis", description: "Cocktails & moments entre amis." }
   ],
   rsvp: {
     title: "Confirme ta presence",
